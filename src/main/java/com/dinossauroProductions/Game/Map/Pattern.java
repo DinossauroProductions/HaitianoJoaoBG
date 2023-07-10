@@ -3,116 +3,70 @@ package com.dinossauroProductions.Game.Map;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
-public class Pattern {
+public record Pattern(List<MapManager.WallTile> walls, MapManager.Direction[] directions){
 
+    public static List<Pattern> loadPatterns(BufferedImage referenceImage) {
 
+        ArrayList<Pattern> patterns = new ArrayList<>();
 
-    private boolean[][] tiles;
+        int width = referenceImage.getWidth() / 6,
+            height = referenceImage.getHeight() / 6;
 
-    private HashSet<Direction> directions;
-
-
-    public Pattern(BufferedImage reference){
-
-        directions = new HashSet<>();
-
-        tiles = new boolean[reference.getWidth()][reference.getHeight()];
-
-        createMapPattern(reference);
-
-    }
-
-    public Pattern(boolean[][] tiles, HashSet<Direction> directions){
-        this.tiles = tiles;
-        this.directions = directions;
-    }
-
-    public static ArrayList<Pattern> loadPatterns(BufferedImage reference){
-        ArrayList<Pattern> list = new ArrayList<>();
-
-        int width = reference.getWidth() / 6;
-        int height = reference.getHeight() / 6;
-
-        for(int xx = 0; xx < width; xx++){
-            for(int yy = 0; yy < height; yy++){
-                list.add(new Pattern(reference.getSubimage(xx * 6, yy * 6, 6, 6)));
+        for(int xx = 0; xx < width; xx++) {
+            for (int yy = 0; yy < height; yy++) {
+                patterns.add(loadPattern(referenceImage.getSubimage((xx * 6) + 1, (yy * 6) + 1, 6, 6)));
             }
         }
 
-        return list;
+        return patterns;
+
     }
 
-    private void createMapPattern(BufferedImage reference){
+    public static Pattern loadPattern(BufferedImage referenceCutImage){
 
-        for(int yy = 0; yy < reference.getHeight(); yy++){
-            for(int xx = 0; xx < reference.getWidth(); xx++){
+        ArrayList<MapManager.WallTile> walls = new ArrayList<>();
+        HashSet<MapManager.Direction> directions = new HashSet<>();
 
-                int currentPixel = reference.getRGB(xx, yy);
+        for(short xx = 0; xx < referenceCutImage.getWidth(); xx++){
+            for(short yy = 0; yy < referenceCutImage.getHeight(); yy++){
 
-                if(currentPixel == 0xFF262b44){
-                    //chão
-                    tiles[yy][xx] = false;
-                }
-                else if (currentPixel == 0xFF3a4466){
-                    //chão e porta, não sei como vou interpretar a porta
-                    tiles[yy][xx] = false;
-                    createDoor(xx, yy);
-                }
-                else if(currentPixel == 0xFFFFFFFF){
-                    //parede
-                    tiles[yy][xx] = true;
+                int pixelAtual = referenceCutImage.getRGB(xx, yy);
+
+                switch (pixelAtual) {
+                    case 0xFFFFFFFF ->
+                        //parede
+
+                            walls.add(new MapManager.WallTile(xx, yy));
+                    case 0xFF3a4466 -> {
+                        //porta
+                        System.out.println("a, " + xx + " e " + yy);
+                        if (xx == 0) {
+                            directions.add(MapManager.Direction.WEST);
+                            System.out.println(directions);
+                        }
+                        if (xx == 5) {
+                            directions.add(MapManager.Direction.EAST);
+                            System.out.println(directions);
+                        }
+                        if (yy == 0) {
+                            directions.add(MapManager.Direction.NORTH);
+                            System.out.println(directions);
+                        }
+                        if (yy == 5) {
+                            directions.add(MapManager.Direction.SOUTH);
+                            System.out.println(directions);
+                        }
+                    }
                 }
             }
         }
 
-    }
+        return new Pattern(walls, ((MapManager.Direction[]) directions.toArray()));
 
-    private void createDoor(int x, int y){
-        if(x == 0){
-            directions.add(Direction.WEST);
-        }
-        else if(x == 5){
-            directions.add(Direction.EAST);
-        }
-        if(y == 0){
-            directions.add(Direction.NORTH);
-        }
-        else if(y == 5){
-            directions.add(Direction.SOUTH);
-        }
-
-    }
-
-    public boolean[][] getTiles(){
-        return tiles;
-    }
-
-    public static Pattern getStartingPattern(){
-        boolean[][] startTiles = new boolean[6][6];
-        startTiles[2][0] = true;
-        startTiles[3][0] = true;
-        startTiles[2][1] = true;
-        startTiles[3][1] = true;
-        HashSet<Direction> dirs = new HashSet<Direction>();
-        dirs.add(Direction.NORTH);
-        return new Pattern(startTiles, dirs);
-    }
-
-    @Override
-    public String toString(){
-        return getTilesAsString(tiles);
-    }
-
-    private String getTilesAsString(boolean[][] tiles){
-        String sum = "";
-        for(int xx = 0; xx < tiles.length; xx++){
-            for(int yy = 0; yy < tiles.length; yy++){
-                sum = sum.concat(tiles[xx][yy] ? "# " : "  ");
-            }
-            sum = sum.concat("\n");
-        }
-        return sum;
     }
 
 }
+
+

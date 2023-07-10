@@ -1,8 +1,11 @@
 package com.dinossauroProductions.Utility;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Objects;
 import java.util.Random;
 
@@ -21,6 +24,25 @@ public class Utils {
             System.out.println("Numero de "+(i+min)+"s: "+estatistica[i]);
         }
 
+    }
+
+    public static BufferedImage getImageFromAsset(String path){
+        Objects.requireNonNull(path);
+
+        URL url = Image.class.getClassLoader().getResource(path);
+        if (url == null) {
+            String fmt = "cannot find resource [%s]";
+            throw new IllegalStateException(String.format(fmt, path));
+        }
+
+        try (InputStream stream = url.openStream()) {
+            return ImageIO.read(stream);
+        }
+        catch (IOException e) {
+            String fmt = "cannot read resource [%s] at [%s]";
+            String err = String.format(fmt, path, url);
+            throw new IllegalStateException(err, e);
+        }
     }
 
 

@@ -4,14 +4,16 @@ import com.dinossauroProductions.Game.Map.MapManager;
 
 public class Main {
 
-    //eclipse, vs code, codeblocks, netbeans, intellij, sites
     private static MapManager manager;
 
-
+    private static Game game;
 
     public static void main(String[] args){
 
-        manager = new MapManager(10);
+        game = new Game();
+        game.start();
+
+        //manager = new MapManager(10);
 
     }
 }
