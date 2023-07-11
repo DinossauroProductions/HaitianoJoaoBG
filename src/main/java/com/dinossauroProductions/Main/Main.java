@@ -1,7 +1,6 @@
 package com.dinossauroProductions.Main;
 
 import com.dinossauroProductions.GameLogic.Map.MapManager;
-import com.dinossauroProductions.Main.Game;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -25,6 +24,5 @@ public class Main {
         game = new Game();
         game.start();
 
-        System.out.println("Bunda");
     }
 }
