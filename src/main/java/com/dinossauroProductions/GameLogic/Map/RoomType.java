@@ -1,4 +1,4 @@
-package com.dinossauroProductions.Game.Map;
+package com.dinossauroProductions.GameLogic.Map;
 
 public enum RoomType {
 

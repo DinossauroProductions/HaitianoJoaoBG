@@ -26,8 +26,7 @@ public class Utils {
 
     }
 
-    /*
-        public static BufferedImage getImageFromAsset(String path){
+    /*public static BufferedImage getImageFromAsset(String path){
         Objects.requireNonNull(path);
 
         URL url = Image.class.getClassLoader().getResource(path);

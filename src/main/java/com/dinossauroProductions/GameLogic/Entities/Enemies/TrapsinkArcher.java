@@ -1,6 +1,6 @@
-package com.dinossauroProductions.Game.Entities.Enemies;
+package com.dinossauroProductions.GameLogic.Entities.Enemies;
 
-import com.dinossauroProductions.Game.Entities.Weapon;
+import com.dinossauroProductions.GameLogic.Entities.Weapon;
 
 public class TrapsinkArcher extends Enemy{
 

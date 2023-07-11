@@ -1,6 +1,6 @@
-package com.dinossauroProductions.Game.Entities.PlayableChars;
+package com.dinossauroProductions.GameLogic.Entities.PlayableChars;
 
-import com.dinossauroProductions.Game.Entities.Item;
+import com.dinossauroProductions.GameLogic.Entities.Item;
 
 public class MarionRavenwood extends PlayableChar{
 

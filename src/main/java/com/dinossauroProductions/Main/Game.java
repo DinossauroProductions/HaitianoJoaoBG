@@ -2,6 +2,8 @@ package com.dinossauroProductions.Main;
 
 import com.dinossauroProductions.Renderer.Sprite;
 
+import com.dinossauroProductions.Utility.Utils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -10,13 +12,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 
-    public static float SCALE = 2f;
+    public static float SCALE = 1f;
     public static int WIDTH = 960 /2, HEIGHT = 540 / 2;
     public static JFrame frame;
-    private BufferedImage image;
+    private final BufferedImage image;
     public int FPS = 0;
     private final static float maxFPS = 60f;
     private boolean isRunning = true;
@@ -24,8 +27,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 
 
-    private Sprite spritetest;
 
+
+
+    private Sprite spritetest;
 
     public synchronized void start() {
         thread = new Thread(this);
@@ -34,6 +39,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
     }
 
     public Game(){
+
+        WIDTH /= 1;
+        HEIGHT /= 16;
+        SCALE *= 16;
 
 
         addKeyListener(this);
@@ -92,7 +101,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
         //render stuff
 
         //g.drawImage(spritetest.get(), 0, 0, null);
-        g.drawImage(Main.manager.mapReference.get(), 0, 0, null);
+        //g.drawImage(Main.manager.mapReference.get(), 0, 0, null);
+
 
         //stop render
 

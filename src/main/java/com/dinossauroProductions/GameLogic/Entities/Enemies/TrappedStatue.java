@@ -1,4 +1,4 @@
-package com.dinossauroProductions.Game.Entities.Enemies;
+package com.dinossauroProductions.GameLogic.Entities.Enemies;
 
 public class TrappedStatue extends Enemy{
 

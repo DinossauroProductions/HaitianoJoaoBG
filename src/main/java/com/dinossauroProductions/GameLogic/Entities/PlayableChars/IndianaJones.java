@@ -1,6 +1,6 @@
-package com.dinossauroProductions.Game.Entities.PlayableChars;
+package com.dinossauroProductions.GameLogic.Entities.PlayableChars;
 
-import com.dinossauroProductions.Game.Entities.Weapon;
+import com.dinossauroProductions.GameLogic.Entities.Weapon;
 import com.dinossauroProductions.Utility.Utils;
 
 public class IndianaJones extends PlayableChar {

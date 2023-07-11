@@ -1,6 +1,4 @@
-package com.dinossauroProductions.Game.Map;
-
-import java.util.ArrayList;
+package com.dinossauroProductions.GameLogic.Map;
 
 public class Room {
 

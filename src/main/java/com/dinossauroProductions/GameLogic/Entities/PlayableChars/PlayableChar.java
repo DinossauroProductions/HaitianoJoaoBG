@@ -1,7 +1,7 @@
-package com.dinossauroProductions.Game.Entities.PlayableChars;
+package com.dinossauroProductions.GameLogic.Entities.PlayableChars;
 
-import com.dinossauroProductions.Game.Entities.Entity;
-import com.dinossauroProductions.Game.Entities.Item;
+import com.dinossauroProductions.GameLogic.Entities.Entity;
+import com.dinossauroProductions.GameLogic.Entities.Item;
 import com.dinossauroProductions.Utility.Utils;
 
 import java.util.ArrayList;

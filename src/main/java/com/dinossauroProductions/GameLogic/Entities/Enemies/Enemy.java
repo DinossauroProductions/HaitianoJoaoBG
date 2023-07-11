@@ -1,6 +1,6 @@
-package com.dinossauroProductions.Game.Entities.Enemies;
+package com.dinossauroProductions.GameLogic.Entities.Enemies;
 
-import com.dinossauroProductions.Game.Entities.Entity;
+import com.dinossauroProductions.GameLogic.Entities.Entity;
 
 public class Enemy extends Entity {
 

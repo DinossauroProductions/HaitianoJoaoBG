@@ -1,16 +1,11 @@
-package com.dinossauroProductions.Game.Map;
+package com.dinossauroProductions.GameLogic.Map;
 
 import com.dinossauroProductions.Renderer.Sprite;
 import com.dinossauroProductions.Utility.Utils;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.Iterator;
 
 public class MapManager {
 
@@ -23,6 +18,17 @@ public class MapManager {
         WEST,
         EAST;
 
+        public static Direction[] toArray(HashSet<Direction> arg){
+            Direction[] returns = new Direction[arg.size()];
+            Iterator<Direction> iterator = arg.iterator();
+            int i = 0;
+            while(iterator.hasNext()){
+                returns[i] = iterator.next();
+                i++;
+            }
+            return returns;
+        }
+
     }
 
 
@@ -30,9 +36,9 @@ public class MapManager {
     private Room[] linearPath;
     private int mapSize;
 
-    private ArrayList<Pattern> patterns;
-
     public Sprite mapReference;
+
+    private ArrayList<Pattern> patterns;
 
     public MapManager(int mapSize){
 
@@ -45,8 +51,8 @@ public class MapManager {
         unillateralMapReference = new Sprite("/mapsUnilateral.png");
 
 
-        //patterns = new ArrayList<>(Pattern.loadPatterns(mapReference.get()));
-        //patterns.addAll(Pattern.loadPatterns(unillateralMapReference.get()));
+        patterns = new ArrayList<>(Pattern.loadPatterns(mapReference.get()));
+        patterns.addAll(Pattern.loadPatterns(unillateralMapReference.get()));
 
         this.mapSize = mapSize;
 
@@ -54,7 +60,7 @@ public class MapManager {
 
         for(int i = 0; i < linearPath.length; i++){
 
-            //linearPath[i] = new Room(RoomType.getRoomType(Utils.d6()), getRandomPattern());
+            linearPath[i] = new Room(RoomType.getRoomType(Utils.d6()), getRandomPattern());
             System.out.println(linearPath[i]);
             System.out.println("-----------------------------------------------");
         }

@@ -1,19 +1,30 @@
 package com.dinossauroProductions.Main;
 
-import com.dinossauroProductions.Game.Map.MapManager;
+import com.dinossauroProductions.GameLogic.Map.MapManager;
+import com.dinossauroProductions.Main.Game;
+
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Main {
 
     public static MapManager manager;
 
-    private static Game game;
+    public static Game game;
+
+    public static ArrayList<BufferedImage> spritesTest = new ArrayList<>();
 
     public static void main(String[] args){
+
+
+
+
+
+        manager = new MapManager(10);
 
         game = new Game();
         game.start();
 
-        manager = new MapManager(10);
-
+        System.out.println("Bunda");
     }
 }

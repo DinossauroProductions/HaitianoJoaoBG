@@ -1,4 +1,6 @@
-package com.dinossauroProductions.Game.Map;
+package com.dinossauroProductions.GameLogic.Map;
+
+import com.dinossauroProductions.Main.Main;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public record Pattern(List<MapManager.WallTile> walls, MapManager.Direction[] di
 
         for(int xx = 0; xx < width; xx++) {
             for (int yy = 0; yy < height; yy++) {
-                patterns.add(loadPattern(referenceImage.getSubimage((xx * 6) + 1, (yy * 6) + 1, 6, 6)));
+                patterns.add(loadPattern(referenceImage.getSubimage((xx * 6) , (yy * 6), 6, 6)));
             }
         }
 
@@ -26,11 +28,15 @@ public record Pattern(List<MapManager.WallTile> walls, MapManager.Direction[] di
 
     public static Pattern loadPattern(BufferedImage referenceCutImage){
 
+        Main.spritesTest.add(referenceCutImage);
+
         ArrayList<MapManager.WallTile> walls = new ArrayList<>();
         HashSet<MapManager.Direction> directions = new HashSet<>();
 
         for(short xx = 0; xx < referenceCutImage.getWidth(); xx++){
             for(short yy = 0; yy < referenceCutImage.getHeight(); yy++){
+
+
 
                 int pixelAtual = referenceCutImage.getRGB(xx, yy);
 
@@ -44,26 +50,25 @@ public record Pattern(List<MapManager.WallTile> walls, MapManager.Direction[] di
                         System.out.println("a, " + xx + " e " + yy);
                         if (xx == 0) {
                             directions.add(MapManager.Direction.WEST);
-                            System.out.println(directions);
                         }
                         if (xx == 5) {
                             directions.add(MapManager.Direction.EAST);
-                            System.out.println(directions);
                         }
                         if (yy == 0) {
                             directions.add(MapManager.Direction.NORTH);
-                            System.out.println(directions);
                         }
                         if (yy == 5) {
                             directions.add(MapManager.Direction.SOUTH);
-                            System.out.println(directions);
+
                         }
                     }
+
                 }
+                //System.out.println((xx*6 + yy)+ " " + directions);
             }
         }
 
-        return new Pattern(walls, ((MapManager.Direction[]) directions.toArray()));
+        return new Pattern(walls, ( MapManager.Direction.toArray(directions)));
 
     }
 

@@ -1,4 +1,4 @@
-package com.dinossauroProductions.Game.Entities;
+package com.dinossauroProductions.GameLogic.Entities;
 
 public enum Item {
 
