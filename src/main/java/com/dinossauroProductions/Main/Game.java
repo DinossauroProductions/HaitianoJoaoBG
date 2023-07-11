@@ -1,5 +1,7 @@
 package com.dinossauroProductions.Main;
 
+import com.dinossauroProductions.Renderer.Sprite;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -21,6 +23,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
     private Thread thread;
 
 
+
+    private Sprite spritetest;
+
+
     public synchronized void start() {
         thread = new Thread(this);
         isRunning = true;
@@ -29,11 +35,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
     public Game(){
 
+
         addKeyListener(this);
         addMouseListener(this);
         setPreferredSize(new Dimension((int)(WIDTH*SCALE),(int)(HEIGHT*SCALE)));
         initFrame();
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+
+        spritetest = new Sprite("/spritesheet_haitiano_joao.png");
 
     }
 
@@ -82,7 +91,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
         //render stuff
 
-
+        //g.drawImage(spritetest.get(), 0, 0, null);
+        g.drawImage(Main.manager.mapReference.get(), 0, 0, null);
 
         //stop render
 

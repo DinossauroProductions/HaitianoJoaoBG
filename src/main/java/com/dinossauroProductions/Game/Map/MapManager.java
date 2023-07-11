@@ -1,5 +1,6 @@
 package com.dinossauroProductions.Game.Map;
 
+import com.dinossauroProductions.Renderer.Sprite;
 import com.dinossauroProductions.Utility.Utils;
 
 import javax.imageio.ImageIO;
@@ -31,19 +32,21 @@ public class MapManager {
 
     private ArrayList<Pattern> patterns;
 
+    public Sprite mapReference;
+
     public MapManager(int mapSize){
 
-        BufferedImage mapReference, unillateralMapReference;
+        Sprite unillateralMapReference;
 
         //carrega a imagem de referência para que possa ser interpretada e carregar os diferentes mapas que são possíveis
-        mapReference = Utils.getImageFromAsset("/maps.png");
+        mapReference = new Sprite("/maps.png");
 
         //carrega a imagem de referência para que possa ser interpretada e carregar os diferentes mapas que são possíveis
-        unillateralMapReference = Utils.getImageFromAsset("/mapsUnilateral.png");
+        unillateralMapReference = new Sprite("/mapsUnilateral.png");
 
 
-        patterns = new ArrayList<>(Pattern.loadPatterns(mapReference));
-        patterns.addAll(Pattern.loadPatterns(unillateralMapReference));
+        //patterns = new ArrayList<>(Pattern.loadPatterns(mapReference.get()));
+        //patterns.addAll(Pattern.loadPatterns(unillateralMapReference.get()));
 
         this.mapSize = mapSize;
 
@@ -51,7 +54,7 @@ public class MapManager {
 
         for(int i = 0; i < linearPath.length; i++){
 
-            linearPath[i] = new Room(RoomType.getRoomType(Utils.d6()), getRandomPattern());
+            //linearPath[i] = new Room(RoomType.getRoomType(Utils.d6()), getRandomPattern());
             System.out.println(linearPath[i]);
             System.out.println("-----------------------------------------------");
         }

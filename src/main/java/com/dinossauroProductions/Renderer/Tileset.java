@@ -9,7 +9,7 @@ public class Tileset {
     private BufferedImage resource;
 
     public Tileset(String resourcePath){
-        this.resource = Utils.getImageFromAsset(resourcePath);
+        this.resource = new Sprite(resourcePath).get();
     }
 
 }

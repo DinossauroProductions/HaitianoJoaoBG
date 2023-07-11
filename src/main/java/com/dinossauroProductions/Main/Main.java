@@ -4,7 +4,7 @@ import com.dinossauroProductions.Game.Map.MapManager;
 
 public class Main {
 
-    private static MapManager manager;
+    public static MapManager manager;
 
     private static Game game;
 
@@ -13,7 +13,7 @@ public class Main {
         game = new Game();
         game.start();
 
-        //manager = new MapManager(10);
+        manager = new MapManager(10);
 
     }
 }
