@@ -47,7 +47,7 @@ public record Pattern(List<MapManager.WallTile> walls, MapManager.Direction[] di
                             walls.add(new MapManager.WallTile(xx, yy));
                     case 0xFF3a4466 -> {
                         //porta
-                        System.out.println("a, " + xx + " e " + yy);
+                        //System.out.println("a, " + xx + " e " + yy);
                         if (xx == 0) {
                             directions.add(MapManager.Direction.WEST);
                         }

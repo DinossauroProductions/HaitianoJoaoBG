@@ -61,8 +61,8 @@ public class MapManager {
         for(int i = 0; i < linearPath.length; i++){
 
             linearPath[i] = new Room(RoomType.getRoomType(Utils.d6()), getRandomPattern());
-            System.out.println(linearPath[i]);
-            System.out.println("-----------------------------------------------");
+            //System.out.println(linearPath[i]);
+            //System.out.println("-----------------------------------------------");
         }
 
     }
